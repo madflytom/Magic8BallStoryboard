@@ -11,10 +11,26 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        becomeFirstResponder()
     }
     
+    override var canBecomeFirstResponder: Bool{
+        return true
+    }
+    
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if (motion == .motionShake){
+            askQuestion()
+        }
+    }
+    
+    
     @IBAction func showMessage(sender: UIButton){
+        askQuestion()
+    }
+    
+    //make function that both actions can call
+    func askQuestion() -> Void{
         let alertController = UIAlertController(title: getResponse(), message: "Hello World", preferredStyle: UIAlertController.Style.alert)
         alertController.addAction(UIAlertAction(title:"OK", style: UIAlertAction.Style.default, handler: nil))
         present(alertController, animated: true, completion: nil)

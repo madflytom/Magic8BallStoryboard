@@ -8,7 +8,8 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    @IBOutlet weak var labelMain: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         becomeFirstResponder()
@@ -31,9 +32,18 @@ class ViewController: UIViewController {
     
     //make function that both actions can call
     func askQuestion() -> Void{
-        let alertController = UIAlertController(title: getResponse(), message: "Hello World", preferredStyle: UIAlertController.Style.alert)
-        alertController.addAction(UIAlertAction(title:"OK", style: UIAlertAction.Style.default, handler: nil))
-        present(alertController, animated: true, completion: nil)
+        //let alertController = UIAlertController(title: getResponse(), message: "Hello World", preferredStyle: UIAlertController.Style.alert)
+        //alertController.addAction(UIAlertAction(title:"OK", style: UIAlertAction.Style.default, handler: nil))
+        //present(alertController, animated: true, completion: nil)
+        
+        labelMain.alpha = 0;
+        labelMain.text = getResponse();
+
+        [UIView .animate(
+            withDuration: 1.5,
+            animations: {self.labelMain.alpha = 1;}
+        )]
+             
     }
     
     func getResponse() -> String{
